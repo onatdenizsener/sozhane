@@ -22,4 +22,5 @@ node scripts/seed.js
 
 echo ""
 echo "🌐 Server başlatılıyor (port: ${PORT:-3000})..."
-exec node_modules/.bin/next start -p "${PORT:-3000}"
+exec node .next/standalone/server.js
+
