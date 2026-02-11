@@ -1,0 +1,8 @@
+node_modules/
+.next/
+*.db
+generated-pdfs/
+.env.local
+.env.production
+.DS_Store
+/data/

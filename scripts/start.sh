@@ -1,0 +1,25 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════
+# Sözhane — Production Start Script
+# Always runs seed (idempotent — skips existing data).
+# ═══════════════════════════════════════════════════════════════
+
+set -e
+
+echo "🚀 Sözhane başlatılıyor..."
+echo "   NODE_ENV:  ${NODE_ENV:-development}"
+echo "   DATABASE:  ${DATABASE_PATH:-./sozhane.db}"
+echo "   PORT:      ${PORT:-3000}"
+echo ""
+
+# Ensure data directories exist
+mkdir -p "$(dirname "${DATABASE_PATH:-./sozhane.db}")"
+mkdir -p "${PDF_DIR:-./generated-pdfs}"
+
+# Run idempotent seed (creates tables + inserts missing templates)
+# INSERT OR IGNORE ensures safe re-runs. Demo user skipped in production.
+node scripts/seed.js
+
+echo ""
+echo "🌐 Server başlatılıyor (port: ${PORT:-3000})..."
+exec node_modules/.bin/next start -p "${PORT:-3000}"

@@ -1,0 +1,36 @@
+{
+  "name": "sozhane",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "seed": "node scripts/seed.js",
+    "db:reset": "rm -f sozhane.db && node scripts/seed.js",
+    "prod:start": "bash scripts/start.sh",
+    "docker:build": "docker build -t sozhane .",
+    "docker:run": "docker run -p 3000:3000 -v sozhane-data:/data --env-file .env.local sozhane"
+  },
+  "dependencies": {
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "better-sqlite3": "^11.0.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "puppeteer": "^22.0.0",
+    "uuid": "^9.0.0",
+    "dotenv": "^16.4.0",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

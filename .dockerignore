@@ -1,0 +1,9 @@
+node_modules
+.next
+.git
+*.db
+generated-pdfs
+.env.local
+.DS_Store
+README.md
+*.tar.gz
