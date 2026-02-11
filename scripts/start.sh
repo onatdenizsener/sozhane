@@ -22,5 +22,15 @@ node scripts/seed.js
 
 echo ""
 echo "🌐 Server başlatılıyor (port: ${PORT:-3000})..."
-exec node .next/standalone/server.js
+
+# Standalone build varsa onu çalıştır (Next'in önerdiği doğru yol)
+if [ -f ".next/standalone/server.js" ]; then
+  export PORT="${PORT:-3000}"
+  export HOSTNAME="0.0.0.0"
+  exec node .next/standalone/server.js
+fi
+
+# Fallback (lokal/dev)
+exec node_modules/.bin/next start -H 0.0.0.0 -p "${PORT:-3000}"
+
 
