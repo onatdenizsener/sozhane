@@ -98,6 +98,6 @@ export async function POST(request) {
 }
 
 // Disable body parsing so we can verify the raw signature
-export const config = {
-  api: { bodyParser: false },
-};
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
